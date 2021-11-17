@@ -12,7 +12,8 @@ CHAIN_ID= evmos_9000-2
 DENOM= aphoton
 GH_URL= https://github.com/tharsis/evmos
 BINARY_VERSION= v0.2.0
-PRELAUNCH_GENESIS_URL= https://raw.githubusercontent.com/tharsis/testnets/main/olympus_mons/genesis.json"
+PRELAUNCH_GENESIS_URL= https://raw.githubusercontent.com/tharsis/testnets/main/olympus_mons/genesis.json
+GENTXS_DIR= $GOPATH/github.com/tharsis/testnets/olympus_mons/gentxs"
 echo
 
 if [[ -z "${GH_URL}" ]]; then
@@ -77,7 +78,7 @@ if [ "$(ls -A $GENTXS_DIR)" ]; then
             fi
 
             $DAEMON add-genesis-account $RANDOM_KEY 1000000000000000$DENOM --home $DAEMON_HOME \
-                --keyring-backend test
+                --keyring-backend test --trace
 
             $DAEMON gentx $RANDOM_KEY 900000000000000$DENOM --home $DAEMON_HOME \
                 --keyring-backend test --chain-id $CHAIN_ID
